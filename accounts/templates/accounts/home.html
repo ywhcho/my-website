@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+        .welcome-message {
+            margin: 30px 0;
+            font-size: 18px;
+            color: #555;
+        }
+        .user-info {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #2e7d32;
+            font-weight: 500;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .btn-secondary {
+            background-color: #757575;
+        }
+        .btn-secondary:hover {
+            background-color: #616161;
+        }
+        .btn-primary {
+            background-color: #2196F3;
+        }
+        .btn-primary:hover {
+            background-color: #1976D2;
+        }
+        .actions {
+            margin-top: 30px;
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .feature-list {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 400px;
+        }
+        .feature-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            list-style-position: inside;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 My Website</h1>
+        
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="welcome-message">
+            Django 게시판 홈페이지에 오신 것을 환영합니다!
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="user-info">
+            <strong>{{ user.username }}</strong>님 환영합니다!
+        </div>
+        {% endif %}
+
+        <div class="feature-list">
+            <ul>
+                <li>게시판 기능 (CRUD)</li>
+                <li>회원가입 및 로그인</li>
+                <li>작성자 권한 관리</li>
+                <li>깔끔한 UI 디자인</li>
+            </ul>
+        </div>
+
+        <div class="actions">
+            <a href="{% url 'board:list' %}" class="btn">게시판 보기</a>
+            
+            {% if user.is_authenticated %}
+                <br>
+                <a href="{% url 'accounts:logout' %}" class="btn btn-secondary">로그아웃</a>
+            {% else %}
+                <br>
+                <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary">회원가입</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
