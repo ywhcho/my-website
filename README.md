@@ -8,7 +8,7 @@ Django와 MySQL을 사용한 로그인 및 게시판 기능이 있는 웹사이�
 
 ## 🛠 기술 스택
 
-- **Backend**: Django 4.2.0
+- **Backend**: Django 4.2.26
 - **Database**: MySQL
 - **Language**: Python 3.x
 - **Frontend**: HTML5, CSS3
