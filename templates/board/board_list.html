@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}게시판 - My Website{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>게시판</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">게시판 목록</h5>
+                <p class="card-text">게시판 기능이 곧 추가될 예정입니다.</p>
+                
+                <div class="alert alert-info">
+                    <strong>안내:</strong> 게시글 작성 및 조회 기능은 추후 업데이트될 예정입니다.
+                </div>
+
+                {% if user.is_authenticated %}
+                    <p class="text-muted">로그인된 사용자: {{ user.username }}</p>
+                {% else %}
+                    <p class="text-muted">게시글을 작성하려면 <a href="{% url 'accounts:login' %}">로그인</a>이 필요합니다.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
+                    <th scope="col">조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" class="text-center text-muted">등록된 게시글이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
