@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}의약정보 - My Website{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>의약정보 조회</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">의약품 정보 검색</h5>
+                <p class="card-text">의약품 정보 검색 기능이 곧 추가될 예정입니다.</p>
+                
+                <div class="alert alert-info">
+                    <strong>안내:</strong> 의약품 데이터베이스 및 검색 기능은 추후 업데이트될 예정입니다.
+                </div>
+                
+                <form class="row g-3">
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="의약품명을 입력하세요" disabled>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100" disabled>검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h4>의약품 정보 예시</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>의약품명</th>
+                        <th>제조사</th>
+                        <th>효능</th>
+                        <th>복용법</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">검색 결과가 없습니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
