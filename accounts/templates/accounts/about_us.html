@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 60px;
         }
         
         /* 네비게이션 바 */
@@ -24,7 +24,8 @@
             left: 0;
             right: 0;
             background-color: #2e7d32;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
         }
         .navbar-container {
@@ -33,43 +34,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 0 20px;
         }
         .navbar-brand {
+            color: white;
             font-size: 24px;
             font-weight: bold;
-            color: white;
             text-decoration: none;
+            padding: 15px 0;
         }
         .navbar-menu {
             display: flex;
             list-style: none;
-            gap: 30px;
-            align-items: center;
+            gap: 0;
         }
-        .navbar-menu li a {
+        .navbar-menu li {
+            margin: 0;
+        }
+        .navbar-menu a {
+            display: block;
             color: white;
             text-decoration: none;
-            font-size: 16px;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            padding: 18px 20px;
+            transition: background-color 0.3s;
         }
-        .navbar-menu li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .navbar-menu li a.active {
-            background-color: #4CAF50;
+        .navbar-menu a:hover,
+        .navbar-menu a.active {
+            background-color: #1b5e20;
         }
         
-        /* 메인 컨텐츠 */
-        .main-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            min-height: calc(100vh - 80px);
-        }
         .container {
             max-width: 1000px;
             width: 100%;
@@ -77,168 +70,154 @@
             padding: 50px;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin: 40px auto;
         }
         
-        h1 {
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .hero h1 {
             color: #2e7d32;
-            margin-bottom: 20px;
-            text-align: center;
             font-size: 42px;
+            margin-bottom: 15px;
         }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
+        .hero .tagline {
             font-size: 20px;
-            margin-bottom: 40px;
+            color: #666;
+            font-weight: 300;
         }
         
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
-        
-        .section-title {
+        .section h2 {
             color: #2e7d32;
             font-size: 28px;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 3px solid #4CAF50;
         }
-        
-        .section-content {
-            color: #444;
-            font-size: 16px;
+        .section p {
+            color: #555;
             line-height: 1.8;
-            text-align: justify;
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .value-card {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        
-        .value-icon {
-            font-size: 56px;
+            font-size: 16px;
             margin-bottom: 15px;
         }
         
-        .value-title {
-            color: #2e7d32;
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-        
-        .value-description {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
+        /* 통계 섹션 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
             margin: 40px 0;
-            flex-wrap: wrap;
-            gap: 20px;
         }
-        
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            background-color: #f5f5f5;
+        .stat-card {
+            background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%);
+            color: white;
+            padding: 30px;
             border-radius: 10px;
-            flex: 1;
-            min-width: 150px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
         .stat-number {
             font-size: 42px;
             font-weight: bold;
-            color: #4CAF50;
             margin-bottom: 10px;
         }
-        
         .stat-label {
-            color: #666;
             font-size: 16px;
+            opacity: 0.9;
         }
         
-        .mission-box {
-            background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
+        /* 핵심 가치 */
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .value-card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .value-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        .value-card h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .value-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
         }
         
-        .mission-box h3 {
-            font-size: 28px;
+        /* 서비스 목록 */
+        .services {
+            background-color: #f5f5f5;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .services ul {
+            list-style: none;
+        }
+        .services li {
+            padding: 15px;
+            margin: 10px 0;
+            background-color: white;
+            border-left: 4px solid #4CAF50;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .services li::before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .cta {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 10px;
+        }
+        .cta h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        .cta p {
+            color: #555;
             margin-bottom: 20px;
         }
-        
-        .mission-box p {
-            font-size: 18px;
-            line-height: 1.8;
-        }
-        
-        .btn-back {
+        .btn {
             display: inline-block;
             padding: 15px 40px;
-            background-color: #757575;
+            background-color: #4CAF50;
             color: white;
             text-decoration: none;
             border-radius: 8px;
-            margin-top: 30px;
+            font-size: 18px;
             transition: all 0.3s;
-            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        
-        .btn-back:hover {
-            background-color: #616161;
+        .btn:hover {
+            background-color: #45a049;
             transform: translateY(-2px);
-        }
-        
-        .center {
-            text-align: center;
-        }
-        
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            .navbar-menu {
-                gap: 15px;
-            }
-            .navbar-menu li a {
-                font-size: 14px;
-                padding: 6px 10px;
-            }
-            .container {
-                padding: 30px 20px;
-            }
-            h1 {
-                font-size: 32px;
-            }
-            .subtitle {
-                font-size: 16px;
-            }
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
     </style>
 </head>
@@ -246,7 +225,7 @@
     <!-- 네비게이션 바 -->
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="{% url 'accounts:home' %}" class="navbar-brand">🏠 My Website</a>
+            <a href="{% url 'accounts:home' %}" class="navbar-brand">🏥 My Website</a>
             <ul class="navbar-menu">
                 <li><a href="{% url 'accounts:home' %}">홈</a></li>
                 <li><a href="{% url 'board:list' %}">게시판</a></li>
@@ -262,111 +241,103 @@
         </div>
     </nav>
 
-    <!-- 메인 컨텐츠 -->
-    <div class="main-content">
-        <div class="container">
-            <h1>🏢 About Us</h1>
-            <p class="subtitle">의약정보 전문 회사</p>
-            
-            <!-- 회사 소개 -->
-            <div class="section">
-                <h2 class="section-title">🎯 회사 소개</h2>
-                <div class="section-content">
-                    <p>
-                        저희는 의약정보 전문 회사로서, 정확하고 신뢰할 수 있는 의약품 정보를 제공하는 것을 
-                        목표로 하고 있습니다. 국민 건강 증진에 기여하고자 최신 의약 정보를 수집, 분석하여 
-                        누구나 쉽게 접근할 수 있도록 서비스를 제공하고 있습니다.
-                    </p>
-                    <br>
-                    <p>
-                        의약품의 올바른 사용과 안전한 복용을 위해 전문가들이 검증한 정보를 바탕으로 
-                        사용자 친화적인 플랫폼을 구축하였으며, 지속적인 업데이트를 통해 최신 정보를 
-                        제공하고 있습니다.
-                    </p>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🏥 의약정보 전문 회사</h1>
+            <p class="tagline">신뢰할 수 있는 의약품 정보를 제공하는 선도 기업</p>
+        </div>
+        
+        <!-- 회사 소개 -->
+        <div class="section">
+            <h2>우리는 누구인가요?</h2>
+            <p>
+                저희는 대한민국 최고의 의약정보 전문 회사입니다. 2010년 설립 이래 정확하고 신뢰할 수 있는 
+                의약품 정보를 국민들에게 제공하는 것을 사명으로 삼고 있습니다.
+            </p>
+            <p>
+                전문 약사와 의료진으로 구성된 팀이 모든 정보를 검증하고, 최신 의학 연구 결과를 반영하여 
+                가장 정확한 의약품 정보를 제공합니다. 우리의 목표는 모든 사람이 안전하고 효과적으로 
+                의약품을 사용할 수 있도록 돕는 것입니다.
+            </p>
+        </div>
+        
+        <!-- 통계 -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">의약품 정보</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">전문가</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100,000+</div>
+                <div class="stat-label">월간 사용자</div>
+            </div>
+        </div>
+        
+        <!-- 미션 -->
+        <div class="section">
+            <h2>우리의 미션</h2>
+            <p>
+                <strong>"모든 국민이 안전하고 올바르게 의약품을 사용할 수 있도록"</strong>
+            </p>
+            <p>
+                의약품 정보의 접근성을 높이고, 복잡한 의학 용어를 쉽게 이해할 수 있도록 풀어내며, 
+                최신 정보를 신속하게 업데이트하여 국민 건강 증진에 기여합니다.
+            </p>
+        </div>
+        
+        <!-- 핵심 가치 -->
+        <div class="section">
+            <h2>핵심 가치</h2>
+            <div class="values">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>전문성</h3>
+                    <p>전문 약사와 의료진이 모든 정보를 검증하고 제공합니다</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>안전성</h3>
+                    <p>정확하고 신뢰할 수 있는 정보만을 제공합니다</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌐</div>
+                    <h3>접근성</h3>
+                    <p>누구나 쉽게 의약품 정보에 접근할 수 있습니다</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔄</div>
+                    <h3>최신성</h3>
+                    <p>최신 의학 연구와 정보를 신속하게 반영합니다</p>
                 </div>
             </div>
-            
-            <!-- 미션 -->
-            <div class="mission-box">
-                <h3>💡 Our Mission</h3>
-                <p>
-                    "모든 사람이 안전하고 정확한 의약정보에 쉽게 접근할 수 있도록 하여<br>
-                    국민 건강 증진과 의약품의 올바른 사용 문화를 선도합니다."
-                </p>
+        </div>
+        
+        <!-- 주요 서비스 -->
+        <div class="section">
+            <h2>주요 서비스</h2>
+            <div class="services">
+                <ul>
+                    <li>의약품 상세 정보 제공 (효능, 용법, 용량, 주의사항)</li>
+                    <li>약품명 및 효능별 검색 서비스</li>
+                    <li>의약품 성분 분석 및 비교</li>
+                    <li>부작용 및 상호작용 정보</li>
+                    <li>전문가 Q&A 게시판</li>
+                    <li>개인 맞춤형 복약 관리</li>
+                    <li>최신 의약품 뉴스 및 업데이트</li>
+                </ul>
             </div>
-            
-            <!-- 통계 -->
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number">10,000+</div>
-                    <div class="stat-label">의약품 정보</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">전문가 네트워크</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100,000+</div>
-                    <div class="stat-label">월간 사용자</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">정보 정확도</div>
-                </div>
-            </div>
-            
-            <!-- 핵심 가치 -->
-            <div class="section">
-                <h2 class="section-title">⭐ 핵심 가치</h2>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon">🔬</div>
-                        <div class="value-title">전문성</div>
-                        <div class="value-description">
-                            의약 전문가들의 검증을 거친 정확하고 신뢰할 수 있는 정보 제공
-                        </div>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">🛡️</div>
-                        <div class="value-title">안전성</div>
-                        <div class="value-description">
-                            의약품의 안전한 사용을 위한 상세한 주의사항과 부작용 정보 제공
-                        </div>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">🌐</div>
-                        <div class="value-title">접근성</div>
-                        <div class="value-description">
-                            누구나 쉽고 편리하게 필요한 의약 정보를 검색하고 활용할 수 있는 플랫폼
-                        </div>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">🔄</div>
-                        <div class="value-title">최신성</div>
-                        <div class="value-description">
-                            지속적인 업데이트를 통해 최신 의약품 정보와 가이드라인 제공
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 서비스 -->
-            <div class="section">
-                <h2 class="section-title">🚀 주요 서비스</h2>
-                <div class="section-content">
-                    <ul style="list-style-position: inside; line-height: 2;">
-                        <li><strong>약품명 검색:</strong> 의약품 이름으로 빠르고 정확한 정보 검색</li>
-                        <li><strong>효능별 검색:</strong> 증상에 따른 적합한 의약품 추천</li>
-                        <li><strong>상세 정보 제공:</strong> 효능, 용법, 용량, 주의사항, 부작용 등 종합 정보</li>
-                        <li><strong>전문가 상담:</strong> 의약품 관련 전문가 상담 서비스</li>
-                        <li><strong>알림 서비스:</strong> 복용 시간 알림 및 의약품 정보 업데이트 알림</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="center">
-                <a href="{% url 'accounts:home' %}" class="btn-back">← 홈으로 돌아가기</a>
-            </div>
+        </div>
+        
+        <!-- CTA -->
+        <div class="cta">
+            <h3>지금 바로 시작하세요</h3>
+            <p>정확하고 신뢰할 수 있는 의약품 정보를 확인해보세요</p>
+            <a href="{% url 'accounts:medicine_info' %}" class="btn">의약정보 검색하기</a>
         </div>
     </div>
 </body>
