@@ -78,3 +78,12 @@ def password_change(request):
         form = CustomPasswordChangeForm(request.user)
     return render(request, 'accounts/password_change.html', {'form': form})
 
+
+def medicine_info(request):
+    """의약정보 페이지"""
+    return render(request, 'accounts/medicine_info.html')
+
+
+def about_us(request):
+    """About Us 페이지"""
+    return render(request, 'accounts/about_us.html')
