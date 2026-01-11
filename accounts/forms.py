@@ -73,14 +73,14 @@ class UserProfileForm(forms.ModelForm):
     def clean_email(self):
         """이메일 중복 체크"""
         email = self.cleaned_data.get('email')
-        if User.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+        if email and User.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
             raise forms.ValidationError('이미 사용 중인 이메일입니다.')
         return email
     
     def clean_username(self):
         """사용자명 중복 체크"""
         username = self.cleaned_data.get('username')
-        if User.objects.exclude(pk=self.instance.pk).filter(username=username).exists():
+        if username and User.objects.exclude(pk=self.instance.pk).filter(username=username).exists():
             raise forms.ValidationError('이미 사용 중인 사용자명입니다.')
         return username
 
