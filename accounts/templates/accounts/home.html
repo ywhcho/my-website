@@ -14,13 +14,64 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding-top: 80px;
+        }
+        
+        /* 네비게이션 바 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #2e7d32;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        .navbar-menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .navbar-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .navbar-menu li a.active {
+            background-color: #4CAF50;
+        }
+        
+        /* 메인 컨텐츠 */
+        .main-content {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
+            min-height: calc(100vh - 80px);
         }
         .container {
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
             background: white;
             padding: 40px;
@@ -108,53 +159,91 @@
             border-radius: 5px;
             list-style-position: inside;
         }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                gap: 15px;
+            }
+            .navbar-menu li a {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+            .navbar-brand {
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏠 My Website</h1>
-        
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <div class="message {{ message.tags }}">
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        <div class="welcome-message">
-            Django 게시판 홈페이지에 오신 것을 환영합니다!
-        </div>
-
-        {% if user.is_authenticated %}
-        <div class="user-info">
-            <strong>{{ user.username }}</strong>님 환영합니다!
-        </div>
-        {% endif %}
-
-        <div class="feature-list">
-            <ul>
-                <li>게시판 기능 (CRUD)</li>
-                <li>회원가입 및 로그인</li>
-                <li>작성자 권한 관리</li>
-                <li>깔끔한 UI 디자인</li>
+    <!-- 네비게이션 바 -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="{% url 'accounts:home' %}" class="navbar-brand">🏠 My Website</a>
+            <ul class="navbar-menu">
+                <li><a href="{% url 'accounts:home' %}">홈</a></li>
+                <li><a href="{% url 'board:list' %}">게시판</a></li>
+                <li><a href="{% url 'accounts:medicine_info' %}">의약정보</a></li>
+                <li><a href="{% url 'accounts:about_us' %}">About Us</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'accounts:profile_edit' %}">내 정보</a></li>
+                    <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
+                {% else %}
+                    <li><a href="{% url 'accounts:login' %}" class="active">로그인</a></li>
+                {% endif %}
             </ul>
         </div>
+    </nav>
 
-        <div class="actions">
-            <a href="{% url 'board:list' %}" class="btn">게시판 보기</a>
+    <!-- 메인 컨텐츠 -->
+    <div class="main-content">
+        <div class="container">
+            <h1>🏠 My Website</h1>
             
-            {% if user.is_authenticated %}
-                <br>
-                <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary">내 정보 수정</a>
-                <a href="{% url 'accounts:logout' %}" class="btn btn-secondary">로그아웃</a>
-            {% else %}
-                <br>
-                <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
-                <a href="{% url 'accounts:register' %}" class="btn btn-primary">회원가입</a>
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
             {% endif %}
+
+            <div class="welcome-message">
+                Django 게시판 홈페이지에 오신 것을 환영합니다!
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="user-info">
+                <strong>{{ user.username }}</strong>님 환영합니다!
+            </div>
+            {% endif %}
+
+            <div class="feature-list">
+                <ul>
+                    <li>게시판 기능 (CRUD)</li>
+                    <li>회원가입 및 로그인</li>
+                    <li>의약정보 검색 시스템</li>
+                    <li>작성자 권한 관리</li>
+                    <li>깔끔한 UI 디자인</li>
+                </ul>
+            </div>
+
+            <div class="actions">
+                <a href="{% url 'board:list' %}" class="btn">게시판 보기</a>
+                <a href="{% url 'accounts:medicine_info' %}" class="btn">의약정보</a>
+                
+                {% if user.is_authenticated %}
+                    <br>
+                    <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary">내 정보 수정</a>
+                    <a href="{% url 'accounts:logout' %}" class="btn btn-secondary">로그아웃</a>
+                {% else %}
+                    <br>
+                    <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
+                    <a href="{% url 'accounts:register' %}" class="btn btn-primary">회원가입</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>
