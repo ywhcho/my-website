@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterForm
+from .forms import RegisterForm, UserProfileForm, CustomPasswordChangeForm
 
 
 def home(request):
@@ -46,4 +47,34 @@ def user_logout(request):
     logout(request)
     messages.success(request, '로그아웃되었습니다.')
     return redirect('accounts:home')
+
+
+@login_required
+def profile_edit(request):
+    """프로필 수정"""
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '프로필이 성공적으로 수정되었습니다.')
+            return redirect('accounts:profile_edit')
+    else:
+        form = UserProfileForm(instance=request.user)
+    return render(request, 'accounts/profile_edit.html', {'form': form})
+
+
+@login_required
+def password_change(request):
+    """비밀번호 변경"""
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # 비밀번호 변경 후 세션 유지
+            update_session_auth_hash(request, user)
+            messages.success(request, '비밀번호가 성공적으로 변경되었습니다.')
+            return redirect('accounts:profile_edit')
+    else:
+        form = CustomPasswordChangeForm(request.user)
+    return render(request, 'accounts/password_change.html', {'form': form})
 

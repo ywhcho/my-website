@@ -148,6 +148,7 @@
             
             {% if user.is_authenticated %}
                 <br>
+                <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary">내 정보 수정</a>
                 <a href="{% url 'accounts:logout' %}" class="btn btn-secondary">로그아웃</a>
             {% else %}
                 <br>
